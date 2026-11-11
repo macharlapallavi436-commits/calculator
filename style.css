@@ -1,0 +1,146 @@
+/* ==============================================================================
+   1. GLOBAL RESET & BASE STYLES
+   ============================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  user-select: none; /* Prevents text highlighting when rapidly tapping buttons */
+}
+
+/* CSS Variables: One single place to modify colors and dimensions */
+:root {
+  --bg-page: #0a0a0c;
+  --bg-calculator: #000000;
+  --display-text: #ffffff;
+  --display-subtext: #8e8e93;
+  
+  /* iOS Calculator Color Palette */
+  --btn-number: #333333;       /* Dark Gray for digits */
+  --btn-number-active: #737373;
+  --btn-secondary: #a5a5a5;    /* Light Gray for AC, ±, % */
+  --btn-secondary-active: #d4d4d2;
+  --btn-secondary-text: #000000;
+  --btn-operator: #ff9f0a;     /* iOS Signature Orange */
+  --btn-operator-active: #fcc781;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-page);
+  padding: 16px;
+}
+
+/* ==============================================================================
+   2. CALCULATOR FRAME
+   ============================================================================== */
+.calculator-wrapper {
+  width: 100%;
+  max-width: 340px;
+}
+
+.calculator {
+  background-color: var(--bg-calculator);
+  border-radius: 40px;
+  padding: 24px 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 
+              0 0 0 1px rgba(255, 255, 255, 0.1); /* Subtle premium border */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ==============================================================================
+   3. DISPLAY SCREEN
+   ============================================================================== */
+.display {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 10px 12px;
+  min-height: 120px;
+  overflow: hidden;
+}
+
+/* Small secondary line showing pending calculation (e.g., "15 +") */
+.previous-operand {
+  color: var(--display-subtext);
+  font-size: 1.25rem;
+  min-height: 1.6rem;
+  font-weight: 400;
+}
+
+/* Primary large number display */
+.current-operand {
+  color: var(--display-text);
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.1;
+  word-break: break-all;
+}
+
+/* ==============================================================================
+   4. KEYPAD (CSS GRID)
+   ============================================================================== */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+  gap: 12px;
+}
+
+/* Base button properties */
+.btn {
+  aspect-ratio: 1; /* Keeps buttons perfectly circular */
+  border-radius: 50%;
+  border: none;
+  font-size: 1.75rem;
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: filter 0.15s ease, transform 0.05s ease;
+  outline: none;
+}
+
+/* Tap feedback */
+.btn:active {
+  filter: brightness(1.3);
+  transform: scale(0.97);
+}
+
+/* Number Buttons (0 - 9, .) */
+.btn-number {
+  background-color: var(--btn-number);
+  color: #ffffff;
+}
+
+/* Function Buttons (AC, ±, %) */
+.btn-secondary {
+  background-color: var(--btn-secondary);
+  color: var(--btn-secondary-text);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* Operator Buttons (+, −, ×, ÷, =) */
+.btn-operator {
+  background-color: var(--btn-operator);
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+/* Zero button spans 2 columns with pill shape matching iOS */
+.btn-zero {
+  aspect-ratio: auto; /* Overrides 1:1 circle */
+  grid-column: span 2;
+  border-radius: 40px;
+  justify-content: flex-start;
+  padding-left: 28px; /* Offsets the text slightly left just like iOS */
+}

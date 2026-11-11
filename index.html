@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Ensures the calculator looks sharp and scales properly on mobile phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iOS-Style Minimalist Calculator</title>
+  
+  <!-- 1. CONNECTING CSS: Links external stylesheet for all visual styling -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Main wrapper to center the calculator on the screen -->
+  <main class="calculator-wrapper">
+    <div class="calculator">
+      
+      <!-- DISPLAY SCREEN: Shows current number and active calculation -->
+      <section class="display" aria-live="polite">
+        <!-- Shows previous number and operator (e.g., "12 +") -->
+        <div class="previous-operand" id="previous-operand"></div>
+        <!-- Shows current input or final result (e.g., "45") -->
+        <div class="current-operand" id="current-operand">0</div>
+      </section>
+
+      <!-- KEYPAD: 4-column button grid matching the iOS layout -->
+      <section class="keypad">
+        <!-- Row 1: Function buttons & divide -->
+        <button class="btn btn-secondary" data-action="clear">AC</button>
+        <button class="btn btn-secondary" data-action="negate">±</button>
+        <button class="btn btn-secondary" data-action="percent">%</button>
+        <button class="btn btn-operator" data-operator="÷">÷</button>
+
+        <!-- Row 2: Numbers 7, 8, 9 & multiply -->
+        <button class="btn btn-number" data-number="7">7</button>
+        <button class="btn btn-number" data-number="8">8</button>
+        <button class="btn btn-number" data-number="9">9</button>
+        <button class="btn btn-operator" data-operator="×">×</button>
+
+        <!-- Row 3: Numbers 4, 5, 6 & subtract -->
+        <button class="btn btn-number" data-number="4">4</button>
+        <button class="btn btn-number" data-number="5">5</button>
+        <button class="btn btn-number" data-number="6">6</button>
+        <button class="btn btn-operator" data-operator="-">−</button>
+
+        <!-- Row 4: Numbers 1, 2, 3 & add -->
+        <button class="btn btn-number" data-number="1">1</button>
+        <button class="btn btn-number" data-number="2">2</button>
+        <button class="btn btn-number" data-number="3">3</button>
+        <button class="btn btn-operator" data-operator="+">+</button>
+
+        <!-- Row 5: 0 (wide), decimal dot, and equals -->
+        <button class="btn btn-number btn-zero" data-number="0">0</button>
+        <button class="btn btn-number" data-number=".">.</button>
+        <button class="btn btn-operator btn-equals" data-action="calculate">=</button>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 2. CONNECTING JAVASCRIPT: Placed at the bottom so the HTML elements load first -->
+  <script src="script.js"></script>
+</body>
+</html>
